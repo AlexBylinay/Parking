@@ -23,7 +23,7 @@ public class Check {
 		uu.park(riki).getNumberSpeace();
 		//System.out.printf (" %s %d \n %s %d", "hhjk",  Ñheque.calculationRote(uu.park(riki),uu), "hhjk", uu.getRent());
 		//jj.toPrintChecue();
-		tick.toPrintTicket();
+		ticket.toPrintTicket();
 		
 		//uu.getNumberSpeace(riki)
 		

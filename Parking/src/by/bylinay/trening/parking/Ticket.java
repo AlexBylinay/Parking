@@ -50,7 +50,7 @@ public static String getTimeOn() {
 public static long getStartTime() {
 	return startTime;
 }
-static public void toPrintTicket (Ticket ticket) {
+static public void toPrintTicket ( ) {
 	System.out.printf (" %s %d \n %s %d \n %s %s \n %s %s ", "ibn Car", getIbnCar(), "number spase",  getNumberSpeace(),"typ Parking",getTypParking(), "time",getTimeOn());  
 }
 }

@@ -34,7 +34,7 @@ public class —heque {
 	}
 
 	public static int calculationRote(Ticket ticket, Parking parking) {
-		String type = Parking.pickUp1(ticket).getType();
+		String type = Parking.pickUp(ticket).getType();
 		int y = (int) (1 * parking.getRent() * TransportVehicleType—efficients.getCefficient(type));
 		return (int) (timeCount(ticket) * parking.getRent() * TransportVehicleType—efficients.getCefficient(type));
 	}

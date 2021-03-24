@@ -15,14 +15,14 @@ public class Parking {
 
 	public Parking(int parkingSpacesForBikes, int parkingSpacesForPassangersCars, int parkingSpacesForTrucks,
 			int rent) {
-		this.parkingSpacesForBikes = new TransportVehicle[parkingSpacesForBikes];
-		this.parkingSpacesForPassangersCars = new TransportVehicle[parkingSpacesForPassangersCars];
-		this.parkingSpacesForTrucks = new TransportVehicle[parkingSpacesForTrucks];
+		this.parkingSpacesForBikes = new TransportVehicle[parkingSpacesForBikes+1];
+		this.parkingSpacesForPassangersCars = new TransportVehicle[parkingSpacesForPassangersCars+1];
+		this.parkingSpacesForTrucks = new TransportVehicle[parkingSpacesForTrucks+1];
 		this.rateOfHour = rent;
 	}
 
 	public static Ticket park(TransportVehicle car) {
-		Ticket ticret = new Ticket(TransportVehicle.getIbn(), getNumberSpeace(car), getTipeParking(car));
+		Ticket ticret = new Ticket(car.getIbn(), getNumberSpeace(car), getTipeParking(car));
 		return ticret;
 	}
 
@@ -30,28 +30,25 @@ public class Parking {
 		return distribute(car);
 	}
 
-	public static TransportVehicle pickUp1(Ticket ticket) {
-		// TransportVehicle car = allTransportVehicle.get(ticket.getIbnCar());
-		return null;
-	}
+	
 
 	public static int distribute(TransportVehicle car) {
 		int num = 0;
 		String tipe = car.getType();
 		// TransportVehicleTypeÑefficients.getCefficient(tipe);
-		if (TransportVehicleTypeÑefficients.getCefficient(tipe) == (float) getIndexBikeParking()) {
+		if (TransportVehicleTypeÑefficients.getCefficient(tipe) == (float) INDEX_BIKE_PARKING) {
 
 			num = findFreePlaceNum(parkingSpacesForBikes);
 			parkingSpacesForBikes[num - 1] = car;
 
 		}
 
-		if (TransportVehicleTypeÑefficients.getCefficient(tipe) == 1) {
+		if (TransportVehicleTypeÑefficients.getCefficient(tipe) == INDEX_PASSANGERS_PARKING) {
 			num = findFreePlaceNum(parkingSpacesForPassangersCars);
 			parkingSpacesForPassangersCars[num - 1] = car;
 
 		}
-		if (TransportVehicleTypeÑefficients.getCefficient(tipe) == (float) 1.3) {
+		if (TransportVehicleTypeÑefficients.getCefficient(tipe) == (float)INDEX_TRUCK_PARKING) {
 			num = findFreePlaceNum(parkingSpacesForTrucks);
 			parkingSpacesForTrucks[num - 1] = car;
 
@@ -63,17 +60,17 @@ public class Parking {
 		String type = null;
 		String tipe = car.getType();
 		// TransportVehicleTypeÑefficients.getCefficient(tipe);
-		if (TransportVehicleTypeÑefficients.getCefficient(tipe) == (float) 0.7) {
+		if (TransportVehicleTypeÑefficients.getCefficient(tipe) == (float) INDEX_BIKE_PARKING) {
 
 			type = "bickeParking";
 
 		}
 
-		if (TransportVehicleTypeÑefficients.getCefficient(tipe) == 1) {
+		if (TransportVehicleTypeÑefficients.getCefficient(tipe) == INDEX_PASSANGERS_PARKING) {
 			type = "passangerParking";
 
 		}
-		if (TransportVehicleTypeÑefficients.getCefficient(tipe) == (float) getIndexTruckParking()) {
+		if (TransportVehicleTypeÑefficients.getCefficient(tipe) == (float) INDEX_TRUCK_PARKING) {
 			type = "truckParking";
 
 		}
@@ -81,7 +78,7 @@ public class Parking {
 	}
 
 	private static int findFreePlaceNum(TransportVehicle[] parkingSpaces) {
-		int num = 3;
+		int num = 0;
 		for (int i = 0; i < parkingSpaces.length; i++) {
 			if (parkingSpaces[i] == null) {
 				num = toNum(i);
@@ -99,7 +96,7 @@ public class Parking {
 		return num - 1;
 	}
 
-	public TransportVehicle pickUp(Ticket ticket) {
+	public static TransportVehicle pickUp(Ticket ticket) {
 		int y = 5;
 		//TransportVehicle vehicle = ticket.getNumberSpeace().getTipeTransportVehicle( ticket);
 		TransportVehicle vehicle = getTipeTransportVehicle(ticket)[ticket.getNumberSpeace()-1];
