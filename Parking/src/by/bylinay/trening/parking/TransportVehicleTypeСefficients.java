@@ -25,15 +25,16 @@ public enum TransportVehicleType—efficients {
 	}
 
 	public static float getCefficient(String tipe) {
+		
 		if (fromCefficients(tipe) == BIKE) {
-			return (float) 0.7;
+			return (float) Parking.getIndexBikeParking();
 		}
 
 		if (fromCefficients(tipe) == PASSANGERS) {
-			return  1;
+			return  Parking.getIndexPassangersParking();
 		}
 		if (fromCefficients(tipe) == TRUCK) {
-			return (float) 1.3;
+			return (float) Parking.getIndexTruckParking();
 		}
 		return 0;
 	}
