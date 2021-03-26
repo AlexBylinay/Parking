@@ -13,6 +13,8 @@ public class CheckingWork {
 		Ticket b = minnesota.park(r1);
 		Ñheque j= new Ñheque(ai, minnesota);
 		j.toPrintChecue();
+		Ñheque o= new Ñheque(b, minnesota);
+		o.toPrintChecue();
 		
 		TransportVehicle japanis = new TransportVehicle("passanger's", 3456);
 		
@@ -36,11 +38,11 @@ public class CheckingWork {
 		//Ticket h = minnesota.park(kitaec);
 		//Ticket g = minnesota.park(volvlo);
 		
-		Ñheque o= new Ñheque(b, minnesota);
+		
 		Ñheque y= new Ñheque(c, minnesota);
 		Ñheque h= new Ñheque(d, minnesota);
 		Ñheque i= new Ñheque(e, minnesota);
-		o.toPrintChecue();
+		
 		y.toPrintChecue();
 		h.toPrintChecue();
 		i.toPrintChecue();
