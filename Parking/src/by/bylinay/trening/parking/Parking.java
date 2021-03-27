@@ -7,16 +7,17 @@ public class Parking {
 	// private static Map <Integer, TransportVehicle> allTransportVehicle;
 	private static final float INDEX_BIKE_PARKING = (float) 0.7;
 	private static final float INDEX_PASSANGERS_PARKING = 1;
-	private static final float INDEX_TRUCK_PARKING = (float) 1.3;		
+	private static final float INDEX_TRUCK_PARKING = (float) 1.3;
+	public static int rateOfHour;
 	public static TransportVehicle[] parkingSpacesForBikes;
 	public static TransportVehicle[] parkingSpacesForPassangersCars;
 	public static TransportVehicle[] parkingSpacesForTrucks;
-	public static int rateOfHour;
+	
 
 	public Parking(int parkingSpacesForBikes, int parkingSpacesForPassangersCars, int parkingSpacesForTrucks,
 			int rent) {
-		this.parkingSpacesForBikes = new TransportVehicle[parkingSpacesForBikes+1];
-		this.parkingSpacesForPassangersCars = new TransportVehicle[parkingSpacesForPassangersCars+1];
+		this.parkingSpacesForBikes = new TransportVehicle[parkingSpacesForBikes];
+		this.parkingSpacesForPassangersCars = new TransportVehicle[parkingSpacesForPassangersCars];
 		this.parkingSpacesForTrucks = new TransportVehicle[parkingSpacesForTrucks+1];
 		this.rateOfHour = rent;
 	}
@@ -92,14 +93,14 @@ public class Parking {
 		return index + 1;
 	}
 
-	private int toIndex(int num) {
+	private static int toIndex(int num) {
 		return num - 1;
 	}
 
 	public static TransportVehicle pickUp(Ticket ticket) {
-		int y = 5;
+		int y = 0;
 		//TransportVehicle vehicle = ticket.getNumberSpeace().getTipeTransportVehicle( ticket);
-		TransportVehicle vehicle = getTipeTransportVehicle(ticket)[ticket.getNumberSpeace()-1];
+		TransportVehicle vehicle = getTipeTransportVehicle(ticket)[toIndex(ticket.getNumberSpeace())];
 		// string type = ticket.
 		return vehicle;
 		
