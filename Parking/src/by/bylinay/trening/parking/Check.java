@@ -36,20 +36,20 @@ public class Check {
 		//System.out.print(TransportVehicleTypeÑefficients.getCefficient("truck"));
 	}
 
-	private static TransportVehicleTypeÑefficients isValid1(String cmd) {
-		return TransportVehicleTypeÑefficients.fromCefficients(cmd);
+	private static TransportVehicleTypeEnum isValid1(String cmd) {
+		return TransportVehicleTypeEnum.fromCefficients(cmd);
 	}
 
 	private static void check(String tipe) {
-		if (TransportVehicleTypeÑefficients.isValid(tipe) == true) {
+		if (TransportVehicleTypeEnum.isValid(tipe) == true) {
 			
-			if (TransportVehicleTypeÑefficients.getCefficient(tipe) == (float) 0.7) {
+			if (TransportVehicleTypeEnum.getCefficient(tipe) == (float) 0.7) {
 				System.out.println("bike");
 			}
-			if (TransportVehicleTypeÑefficients.getCefficient(tipe) == 1) {
+			if (TransportVehicleTypeEnum.getCefficient(tipe) == 1) {
 				System.out.println("passanger's");
 			}
-			if (TransportVehicleTypeÑefficients.getCefficient(tipe) ==(float) 1.3) {
+			if (TransportVehicleTypeEnum.getCefficient(tipe) ==(float) 1.3) {
 				System.out.println("truck");
 			}
 
