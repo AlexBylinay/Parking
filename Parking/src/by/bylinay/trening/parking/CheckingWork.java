@@ -20,7 +20,7 @@ public class CheckingWork {
 		TransportVehicle kitaec = new TransportVehicle("truck", 9000);
 		TransportVehicle volvlo = new TransportVehicle("truck", 5643);
 		
-		Parking minnesota = new Parking(4, 6, 15, 3);
+		Parking minnesota = new Parking(9, 12, 15, 3);
 	
 		Ticket a = (minnesota.park(ural));
 		Ticket b = minnesota.park(r1);
@@ -31,7 +31,7 @@ public class CheckingWork {
 		Ticket h = minnesota.park(kitaec);
 		Ticket g = minnesota.park(volvlo);
 		
-		
+		/*
 		Ñheque o= new Ñheque(b, minnesota);
 		o.toPrintChecue();
 		Ñheque y= new Ñheque(c, minnesota);
@@ -43,15 +43,22 @@ public class CheckingWork {
 		y.toPrintChecue();
 		u.toPrintChecue();
 		i.toPrintChecue();
+		*/
+		Ñheque y= new Ñheque(c, minnesota);
+		Ñheque u= new Ñheque(d, minnesota);
+		Ñheque i= new Ñheque(e, minnesota);
+
 		
 		
-	//	ai.toPrintTicket();
-		/*b.toPrintTicket();
-		//c.toPrintTicket();
+		b.toPrintTicket();
+		c.toPrintTicket();
 		d.toPrintTicket();
 		e.toPrintTicket();
 		f.toPrintTicket();
 		h.toPrintTicket();
-	//	g.toPrintTicket();*/
+		g.toPrintTicket();
+		y.toPrintChecue();
+		u.toPrintChecue();
+		i.toPrintChecue();
 	}
 }

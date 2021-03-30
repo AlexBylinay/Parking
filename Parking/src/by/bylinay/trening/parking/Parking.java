@@ -4,59 +4,112 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Parking {
 
-	// private static Map <Integer, TransportVehicle> allTransportVehicle;
-	private static final float INDEX_BIKE_PARKING = (float) 0.7;
-	private static final float INDEX_PASSANGERS_PARKING = 1;
-	private static final float INDEX_TRUCK_PARKING = (float) 1.3;
-	public static int rateOfHour;
-
-	public static Map<TransportVehicleTypeEnum, TransportVehicle[]> parkingSpaces;
-	static List<Integer> allTypsSize = new ArrayList<Integer>();
-	// public static TransportVehicle[] parkingSpacesForBikes;
-	// public static TransportVehicle[] parkingSpacesForPassangersCars;
-	// public static TransportVehicle[] parkingSpacesForTrucks;
-
-	public Parking(int parkingSpacesForBikes, int parkingSpacesForPassangersCars, int parkingSpacesForTrucks, int rent) {
+	
+	
+	public  int rateOfHour;
+	public static HashMap<TransportVehicleTypeEnum, TransportVehicle[]> parkingSpaces;
+	
+	int parkingSpacesForBikes;
+	int parkingSpacesForPassangersCars;
+	int parkingSpacesForTrucks;
+	
+	public Parking(int parkingSpacesForBikes, int parkingSpacesForPassangersCars,int parkingSpacesForTrucks, int rent) {
 		List<TransportVehicle[]> allTypePparking = new ArrayList<TransportVehicle[]>();
-		int firstTypeSize = parkingSpacesForBikes;
-		int señondTypeSize = parkingSpacesForPassangersCars;
-		int thirdTypeSize = parkingSpacesForTrucks;
+		this. parkingSpacesForBikes = parkingSpacesForBikes;
+		this. parkingSpacesForPassangersCars = parkingSpacesForBikes ;
+		this. parkingSpacesForTrucks = parkingSpacesForTrucks;
+		this. parkingSpaces = fulling( parkingSpacesForBikes,  parkingSpacesForPassangersCars, parkingSpacesForTrucks);
+		this.rateOfHour = rent;
+	}
+	
+	public  HashMap<TransportVehicleTypeEnum, TransportVehicle[]> getParkingSpaces() {
+		return parkingSpaces;
+	}
+
+	public static List<Integer> maikingSizesParkingsDyfferentTyps (int parkingSpacesForBikes, int parkingSpacesForPassangersCars,int parkingSpacesForTrucks){
+		List<Integer> allTypsSize = new ArrayList<Integer>();
 		allTypsSize.add(0, parkingSpacesForBikes);
 		allTypsSize.add(1, parkingSpacesForPassangersCars);
 		allTypsSize.add(2, parkingSpacesForTrucks);
-
-		// this.parkingSpacesForBikes = new TransportVehicle[parkingSpacesForBikes];
-		//// this.parkingSpacesForPassangersCars = new
-		// TransportVehicle[parkingSpacesForPassangersCars];
-		// this.parkingSpacesForTrucks = new TransportVehicle[parkingSpacesForTrucks];
-		this.rateOfHour = rent;
+		return allTypsSize;
 	}
-
-	// int quantityTypsOfParking = (TransportVehicleTypeEnum.getVallue().size())
-	public static int fulling() {
-		int y =0;
-		parkingSpaces = new HashMap<TransportVehicleTypeEnum, TransportVehicle[]>();
+		
+	public static HashMap<TransportVehicleTypeEnum, TransportVehicle[]> fulling(int parkingSpacesForBikes, int parkingSpacesForPassangersCars,int parkingSpacesForTrucks) {
+		HashMap parkingSpaces = new HashMap<TransportVehicleTypeEnum, TransportVehicle[]>();
 		for (int i = 0; i <= TransportVehicleTypeEnum.getVallue().size()-1; i++) {
 			String name = TransportVehicleTypeEnum.getVallue().get(i).getTipe();
 			TransportVehicleTypeEnum type = TransportVehicleTypeEnum.getVallue().get(i);
-			TransportVehicle[] s = new TransportVehicle[allTypsSize.get(i)];
-			parkingSpaces.put(type, s);
-			TransportVehicle[] t = parkingSpaces.get(type);
-		  y  =  parkingSpaces.size();
-		
+			TransportVehicle[] vehicle = new TransportVehicle[maikingSizesParkingsDyfferentTyps(parkingSpacesForBikes,  parkingSpacesForPassangersCars,parkingSpacesForTrucks).get(i)];
+			parkingSpaces.put(type, vehicle); 
 		}
-		return y ;
+		return parkingSpaces;
 	}
 
 	
-	/*public static Ticket park(TransportVehicle car) {
-		Ticket ticret = new Ticket(car.getIbn(), getNumberSpeace(car), getTipeParking(car));
+	public static Ticket park(TransportVehicle car) {
+		Ticket ticret = new Ticket(car.getIbn(), giveParkingSpeaseNunber(car), getTipeParking(car));
 		return ticret;
 	}
 
+	public static int giveParkingSpeaseNunber (TransportVehicle car ){
+		
+		TransportVehicle[] parking = parkingSpaces.get(TransportVehicleTypeEnum.getValid(car.getType()));
+		int num = findFreePlaceNum(parking);
+		parking [num - 1] = car;
+		return num;	
+	}
+	
+	public static String getTipeParking(TransportVehicle car) {
+		return car.getType();
+	}
+	
+
+	private static int findFreePlaceNum(TransportVehicle[] parkingSpaces) {
+		int num = 0;
+		for (int i = 0; i < parkingSpaces.length; i++) {
+			if (parkingSpaces[i] == null) {
+				num = toNum(i);
+			}
+
+		}
+		return num;
+	}
+
+	private static int toNum(int index) {
+		return index + 1;
+	}
+
+	private static int toIndex(int num) {
+		return num - 1;
+	}
+	
+	
+	public static TransportVehicle pickUp(Ticket ticket) {
+		TransportVehicle[] parking = parkingSpaces.get(TransportVehicleTypeEnum.getValid(ticket.getTypParking()));
+		//TransportVehicle vehicle = ticket.getNumberSpeace().getTipeTransportVehicle( ticket);
+		TransportVehicle vehicle = parking [(ticket.getNumberSpeace())-1];
+		parking[toIndex(ticket.getNumberSpeace())] = null;
+		
+		return vehicle;
+	}
+	
+	
+	public  int getRent() {
+		return rateOfHour;
+	}
+	/*public static List  <TransportVehicleTypeEnum> getKey() {
+		List<TransportVehicleTypeEnum> keys = new ArrayList<TransportVehicleTypeEnum>();
+		for ( TransportVehicleTypeEnum key1: parkingSpaces.keySet() ) {
+			keys =  (List<TransportVehicleTypeEnum>) parkingSpaces.keySet();
+		}
+		return keys;
+	}
+	
+	
 	static int getNumberSpeace(TransportVehicle car) {
 		return distribute(car);
 	}
@@ -85,45 +138,8 @@ public class Parking {
 		return num;
 	}
 
-	public static String getTipeParking(TransportVehicle car) {
-		String type = null;
-		String tipe = car.getType();
-		// TransportVehicleTypeÑefficients.getCefficient(tipe);
-		if (TransportVehicleTypeÑefficients.getCefficient(tipe) == (float) INDEX_BIKE_PARKING) {
 
-			type = "bickeParking";
 
-		}
-
-		if (TransportVehicleTypeÑefficients.getCefficient(tipe) == INDEX_PASSANGERS_PARKING) {
-			type = "passangerParking";
-
-		}
-		if (TransportVehicleTypeÑefficients.getCefficient(tipe) == (float) INDEX_TRUCK_PARKING) {
-			type = "truckParking";
-
-		}
-		return type;
-	}
-
-	private static int findFreePlaceNum(TransportVehicle[] parkingSpaces) {
-		int num = 0;
-		for (int i = 0; i < parkingSpaces.length; i++) {
-			if (parkingSpaces[i] == null) {
-				num = toNum(i);
-			}
-
-		}
-		return num;
-	}
-
-	private static int toNum(int index) {
-		return index + 1;
-	}
-
-	private static int toIndex(int num) {
-		return num - 1;
-	}
 
 	public static TransportVehicle pickUp(Ticket ticket) {
 		int y = 0;
@@ -150,7 +166,7 @@ public class Parking {
 			return null;	
 			
 	}
-		public static int getRent() {
+		public  int getRent() {
 			return rateOfHour;
 		}
 
@@ -164,5 +180,5 @@ public class Parking {
 
 		public static float getIndexBikeParking() {
 			return INDEX_BIKE_PARKING;
-		}*/
+	}	*/
 }

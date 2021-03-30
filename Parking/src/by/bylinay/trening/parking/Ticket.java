@@ -6,11 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Ticket {
-	public static int ibnCar;
-	public static int numberParkingSpace;
-	public static String typParking;
-	public static String timeOn;
-	private static long startTime;
+	public  int ibnCar;
+	public  int numberParkingSpace;
+	public  String typParking;
+	public  String timeOn;
+	private long startTime;
 
 	public Ticket(int ibnCar, int numberParkingSpace, String typParking) {
 		this.ibnCar = ibnCar;
@@ -21,33 +21,33 @@ public class Ticket {
 
 	}
 
-	public static int getIbnCar() {
+	public  int getIbnCar() {
 		return ibnCar;
 	}
 
-	public static int setIbnCar(int num) {
+	public  int setIbnCar(int num) {
 		ibnCar = num;
 		return ibnCar;
 	}
 
-	public static int getNumberSpeace() {
+	public  int getNumberSpeace() {
 		return numberParkingSpace;
 	}
 
-	public static String getTypParking() {
+	public  String getTypParking() {
 		return typParking;
 	}
 
-	public static String getTimeOn() {
+	public  String getTimeOn() {
 		return timeOn;
 	}
 
-	public static long getStartTime() {
+	public  long getStartTime() {
 		return startTime;
 	}
 
-	static public void toPrintTicket() {
-		System.out.printf(" %s %d \n %s %d \n %s %s \n %s %s ", "ibn Car", getIbnCar(), "number spase",
+	 public void toPrintTicket() {
+		System.out.printf(" \n %s \n %s %d \n %s %d \n %s %s \n %s %s ", "оо|$|$|TICKET|$|$|оо", "ibn Car", getIbnCar(), "number spase",
 				getNumberSpeace(), "typ Parking", getTypParking(), "time", getTimeOn());
 	}
 }

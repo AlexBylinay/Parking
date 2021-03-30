@@ -4,15 +4,15 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Ñheque {
-	private static final long MILLISEKONDS_IN_HOUR = 1;
-	public static int numberTiket;
-	public static String typeCar;
-	public static int ibnCar;
-	public static String timeOn;
-	public static String timeOff;
-	public static int quantity;
-	public static int rateOfHour;
-	public static int rate;
+	private final long MILLISEKONDS_IN_HOUR = 1;
+	public int numberTiket;
+	public  String typeCar;
+	public  int ibnCar;
+	public  String timeOn;
+	public  String timeOff;
+	public  int quantity;
+	public  int rateOfHour;
+	public  int rate;
 
 
 	
@@ -24,52 +24,52 @@ public class Ñheque {
 		this.timeOff = new SimpleDateFormat("yyyy/MM/dd_HH:mm:ss").format(Calendar.getInstance().getTime());
 		this.quantity = timeCount(ticket);
 		this.rateOfHour = parking.getRent();
-		this.rate = calculationRote(ticket, parking);
+		//this.rate = calculationRote(ticket, parking);
 		this.numberTiket = ticket.getNumberSpeace();
         this.ibnCar = (parking.pickUp(ticket).getIbn());
 	}
 
-	public static int timeCount(Ticket ticket) {
+	public  int timeCount(Ticket ticket) {
 		return (int) (System.currentTimeMillis() - (ticket.getStartTime()) / MILLISEKONDS_IN_HOUR);
 	}
 
-	public static int calculationRote(Ticket ticket, Parking parking) {
-		String type = Parking.pickUp(ticket).getType();
-		int y = (int) (1 * parking.getRent() * TransportVehicleTypeEnum.getCefficient(type));
-		return (int) (timeCount(ticket) * parking.getRent() * TransportVehicleTypeEnum.getCefficient(type));
-	}
+	//public static int calculationRote(Ticket ticket, Parking parking) {
+	//	String type = Parking.pickUp(ticket).getType();
+	//	int y = (int) (1 * parking.getRent() * TransportVehicleTypeEnum.getCefficient(type));
+		//return (int) (timeCount(ticket) * parking.getRent() * TransportVehicleTypeEnum.getCefficient(type));
+	//}
 
-	public static int getNumberTiket() {
+	public  int getNumberTiket() {
 		return numberTiket;
 	}
 
 
-	public static int getIbnCar() {
+	public  int getIbnCar() {
 		return ibnCar;
 	}
 
-	public static String getTimeOn() {
+	public  String getTimeOn() {
 		return timeOn;
 	}
 
 
-	public static String getTimeOff() {
+	public String getTimeOff() {
 		return timeOff;
 	}
 
-	public static int getQuantity() {
+	public  int getQuantity() {
 		return quantity;
 	}
 
-	public static int getRateOfHour() {
+	public  int getRateOfHour() {
 		return rateOfHour;
 	}
 
-	public static int getRate() {
+	public  int getRate() {
 		return rate;
 	}
-static public void toPrintChecue () {
-	System.out.printf (" %s %d \n %s %s \n %s %s \n %s %d \n %s %d", "IbnCar", getIbnCar() , "time on",  getTimeOn(),"time off", getTimeOff(), "hours", getQuantity(), "many", getRate() );
+ public void toPrintChecue () {
+	System.out.printf (" \n %s \n %s %d \n %s %s \n %s %s \n %s %d \n %s %d"," ®*ˆ*ˆ*ÑHEQUEˆ*ˆ*ˆ*®", "IbnCar", getIbnCar() , "time on",  getTimeOn(),"time off", getTimeOff(), "hours", getQuantity(), "many", getRateOfHour());
 	//System.out.print(getIbnCar());
 }
 }
