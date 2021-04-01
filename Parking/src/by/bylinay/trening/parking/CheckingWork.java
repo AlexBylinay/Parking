@@ -7,10 +7,7 @@ public class CheckingWork {
 
 		
 		Ticket ai = new  Ticket (0, 0, null);
-		
-
 	
-		
 		TransportVehicle ural = new TransportVehicle("bike", 3536);
 		TransportVehicle r1 = new TransportVehicle("bike", 7986);
 		TransportVehicle japanis = new TransportVehicle("passanger's", 3456);

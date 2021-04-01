@@ -42,13 +42,28 @@ public enum TransportVehicleTypeEnum {
 	 */
 
 	public static List<TransportVehicleTypeEnum> getVallue() {
-		List<TransportVehicleTypeEnum> typs = new ArrayList<TransportVehicleTypeEnum>();
+		List<TransportVehicleTypeEnum> values = new ArrayList<TransportVehicleTypeEnum>();
+		for (TransportVehicleTypeEnum val : values()) {
+			values.add(val);
+		}
+		return values;
+
+	}
+	
+	
+	public static List<String> getTyps() {
+		List<String> type = new ArrayList<String>();
 
 		for (TransportVehicleTypeEnum val : values()) {
-			typs.add(val);
+			type.add(val.getTipe());
 		}
-		return typs;
+		return type;
 
+	}
+	
+	
+	public static int getSize() {
+		return getVallue().size();
 	}
 
 	/*public static float getCefficient2(String tipe) {
