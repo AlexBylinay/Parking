@@ -1,77 +1,51 @@
 package by.bylinay.trening.parking;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-public class Parking {
+public class Parking3 {
 
 	public int rateOfHour;
 	public Map<TransportVehicleTypeEnum, TransportVehicle[]> parkingSpaces;
-	int parkingSpacesForBikes;
-	int parkingSpacesForPassangersCars;
-	int parkingSpacesForTrucks;
+	public ParkingTypeInfo forBikes = new ParkingTypeInfo (null, 0, 0);
+	public ParkingTypeInfo forPaxxangrCars  = new ParkingTypeInfo (null, 0, 0);
+	public ParkingTypeInfo forTracks = new ParkingTypeInfo (null, 0, 0);
+	List<ParkingTypeInfo> parkingValues = new ArrayList<ParkingTypeInfo>();
 
-	public Parking(int parkingSpacesForBikes, int parkingSpacesForPassangersCars, int parkingSpacesForTrucks,
-			int rent) {
+	public Parking3(List<ParkingTypeInfo> parkingValues) {
 		List<TransportVehicle[]> allTypePparking = new ArrayList<TransportVehicle[]>();
-		this.parkingSpacesForBikes = parkingSpacesForBikes;
-		this.parkingSpacesForPassangersCars = parkingSpacesForBikes;
-		this.parkingSpacesForTrucks = parkingSpacesForTrucks;
-		this.parkingSpaces = fulling(parkingSpacesForBikes, parkingSpacesForPassangersCars, parkingSpacesForTrucks);
-		this.rateOfHour = rent;
+	   this.parkingSpaces = fulling(parkingValues);
+		
 	}
 
-	
+	public Map<TransportVehicleTypeEnum, TransportVehicle[]> getParkingSpaces() {
+		return parkingSpaces;
+	}
 
-	public List<Integer> maikingSizesParkingsDyfferentTyps(int parkingSpacesForBikes,
-			int parkingSpacesForPassangersCars, int parkingSpacesForTrucks) {
+	public List<Integer> maikingSizesParkingsDyfferentTyps(List<ParkingTypeInfo>parkingValues) {
 		List<Integer> allTypsSize = new ArrayList<Integer>();
-		allTypsSize.add(0, parkingSpacesForBikes);
-		allTypsSize.add(1, parkingSpacesForPassangersCars);
-		allTypsSize.add(2, parkingSpacesForTrucks);
+		for(int i = 0; i < parkingValues.size(); i++) {
+		allTypsSize.add(i,parkingValues.get(i).getQuantityPlaces());
+		}
 		return allTypsSize;
 	}
-
 	
 	
-	public void maikingSizesParkingsDyfferentTyps1(int parkingSpacesForBikes,
-			int parkingSpacesForPassangersCars, int parkingSpacesForTrucks) {
-		List<Integer> allTypsSize = new ArrayList<Integer>();
-		allTypsSize.add(0, parkingSpacesForBikes);
-		allTypsSize.add(1, parkingSpacesForPassangersCars);
-		allTypsSize.add(2, parkingSpacesForTrucks);
-		 System.out.println(allTypsSize);
-	}
 	
-	public void fulling1(int parkingSpacesForBikes,
-            int parkingSpacesForPassangersCars, int parkingSpacesForTrucks) {
-        HashMap parkingSpaces = new HashMap<TransportVehicleTypeEnum, TransportVehicle[]>();
-        for (int i = 0; i <= TransportVehicleTypeEnum.getVallue().size() - 1; i++) {
-            String name = TransportVehicleTypeEnum.getVallue().get(i).getTipe();
-            TransportVehicleTypeEnum type = TransportVehicleTypeEnum.getVallue().get(i);
-            TransportVehicle[] vehicle = new TransportVehicle[maikingSizesParkingsDyfferentTyps(parkingSpacesForBikes,
-                    parkingSpacesForPassangersCars, parkingSpacesForTrucks).get(i)];
-            parkingSpaces.put(type, vehicle);
-            System.out.println(vehicle);
-        }
-       // System.out.println(parkingSpaces);
-    }
-	public HashMap<TransportVehicleTypeEnum, TransportVehicle[]> fulling(int parkingSpacesForBikes,
-			int parkingSpacesForPassangersCars, int parkingSpacesForTrucks) {
+	public HashMap<TransportVehicleTypeEnum, TransportVehicle[]> fulling(List<ParkingTypeInfo>parkingValues) {
 		HashMap parkingSpaces = new HashMap<TransportVehicleTypeEnum, TransportVehicle[]>();
 		for (int i = 0; i <= TransportVehicleTypeEnum.getVallue().size() - 1; i++) {
 			String name = TransportVehicleTypeEnum.getVallue().get(i).getTipe();
 			TransportVehicleTypeEnum type = TransportVehicleTypeEnum.getVallue().get(i);
-			TransportVehicle[] vehicle = new TransportVehicle[maikingSizesParkingsDyfferentTyps(parkingSpacesForBikes,
-					parkingSpacesForPassangersCars, parkingSpacesForTrucks).get(i)];
+			TransportVehicle[] vehicle = new TransportVehicle[maikingSizesParkingsDyfferentTyps(parkingValues).get(i)];
 			parkingSpaces.put(type, vehicle);
 		}
 		return parkingSpaces;
 	}
 
+	
 	public Ticket park(TransportVehicle car) {
 		Ticket ticret = new Ticket(car.getIbn(), giveParkingSpeaseNunber(car), getTipeParking(car));
 		return ticret;
@@ -81,7 +55,7 @@ public class Parking {
 
 		TransportVehicle[] parking = parkingSpaces.get(TransportVehicleTypeEnum.getValid(car.getType()));
 		int num = findFreePlaceNum(parking);
-		parking[num - 1] = car;
+		parking[num-1] = car;
 		return num;
 	}
 
@@ -182,4 +156,5 @@ public class Parking {
 	 * 
 	 * public static float getIndexBikeParking() { return INDEX_BIKE_PARKING; }
 	 */
+
 }

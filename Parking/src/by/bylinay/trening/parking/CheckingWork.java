@@ -17,8 +17,8 @@ public class CheckingWork {
 		TransportVehicle kitaec = new TransportVehicle("truck", 9000);
 		TransportVehicle volvlo = new TransportVehicle("truck", 5643);
 		
-		Parking minnesota = new Parking(9, 12, 15, 3);
-	
+		Parking minnesota = new Parking(12, 15, 18, 3);
+		minnesota. maikingSizesParkingsDyfferentTyps1(12, 15, 18);
 		Ticket a = (minnesota.park(ural));
 		Ticket b = minnesota.park(r1);
 		Ticket c = minnesota.park(japanis);
