@@ -30,16 +30,6 @@ public enum TransportVehicleTypeEnum {
 		return null;
 	}
 
-	/*
-	 * public static float getCefficient(String tipe) {
-	 * 
-	 * if (getValid(tipe) == BIKE) { return (float) Parking.getIndexBikeParking(); }
-	 * 
-	 * if (getValid(tipe) == PASSANGERS) { return
-	 * Parking.getIndexPassangersParking(); } if (getValid(tipe) == TRUCK) { return
-	 * (float) Parking.getIndexTruckParking(); } return 0; }
-	 * 
-	 */
 
 	public static List<TransportVehicleTypeEnum> getVallue() {
 		List<TransportVehicleTypeEnum> values = new ArrayList<TransportVehicleTypeEnum>();
@@ -49,8 +39,7 @@ public enum TransportVehicleTypeEnum {
 		return values;
 
 	}
-	
-	
+
 	public static List<String> getTyps() {
 		List<String> type = new ArrayList<String>();
 
@@ -60,25 +49,10 @@ public enum TransportVehicleTypeEnum {
 		return type;
 
 	}
-	
-	
+
 	public static int getSize() {
 		return getVallue().size();
 	}
 
-	/*public static float getCefficient2(String tipe) {
-
-		if (getValid(tipe) == BIKE) {
-			return (float) Parking.getIndexBikeParking();
-		}
-
-		if (getValid(tipe) == PASSANGERS) {
-			return Parking.getIndexPassangersParking();
-		}
-		if (getValid(tipe) == TRUCK) {
-			return (float) Parking.getIndexTruckParking();
-		}
-		return 0;
-	}*/
 
 }

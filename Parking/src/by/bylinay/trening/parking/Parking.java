@@ -8,86 +8,57 @@ import java.util.Set;
 
 public class Parking {
 
-	public int rateOfHour;
+	
 	public Map<TransportVehicleTypeEnum, TransportVehicle[]> parkingSpaces;
-	int parkingSpacesForBikes;
-	int parkingSpacesForPassangersCars;
-	int parkingSpacesForTrucks;
-
-	public Parking(int parkingSpacesForBikes, int parkingSpacesForPassangersCars, int parkingSpacesForTrucks,
-			int rent) {
-		List<TransportVehicle[]> allTypePparking = new ArrayList<TransportVehicle[]>();
-		this.parkingSpacesForBikes = parkingSpacesForBikes;
-		this.parkingSpacesForPassangersCars = parkingSpacesForBikes;
-		this.parkingSpacesForTrucks = parkingSpacesForTrucks;
-		this.parkingSpaces = fulling(parkingSpacesForBikes, parkingSpacesForPassangersCars, parkingSpacesForTrucks);
-		this.rateOfHour = rent;
+	public Map<TransportVehicleTypeEnum, Integer > rateOfHour;
+	
+	public Parking(List<ParkingTypeInfo> parkingValues) {
+		this.parkingSpaces = fullingForList(parkingValues);
+		this.rateOfHour = getRentForList(parkingValues);
 	}
 
-	
-
-	public List<Integer> maikingSizesParkingsDyfferentTyps(int parkingSpacesForBikes,
-			int parkingSpacesForPassangersCars, int parkingSpacesForTrucks) {
-		List<Integer> allTypsSize = new ArrayList<Integer>();
-		allTypsSize.add(0, parkingSpacesForBikes);
-		allTypsSize.add(1, parkingSpacesForPassangersCars);
-		allTypsSize.add(2, parkingSpacesForTrucks);
-		return allTypsSize;
+	public Parking(Map<TransportVehicleTypeEnum, ParkingTypeInfo> parkingValues) {
+		this.parkingSpaces = fullingForMap(parkingValues);
+		this.rateOfHour = getRentForMap(parkingValues);
 	}
 
-	
-	
-	public void maikingSizesParkingsDyfferentTyps1(int parkingSpacesForBikes,
-			int parkingSpacesForPassangersCars, int parkingSpacesForTrucks) {
-		List<Integer> allTypsSize = new ArrayList<Integer>();
-		allTypsSize.add(0, parkingSpacesForBikes);
-		allTypsSize.add(1, parkingSpacesForPassangersCars);
-		allTypsSize.add(2, parkingSpacesForTrucks);
-		 System.out.println(allTypsSize);
-	}
-	
-	public void fulling1(int parkingSpacesForBikes,
-            int parkingSpacesForPassangersCars, int parkingSpacesForTrucks) {
-        HashMap parkingSpaces = new HashMap<TransportVehicleTypeEnum, TransportVehicle[]>();
-        for (int i = 0; i <= TransportVehicleTypeEnum.getVallue().size() - 1; i++) {
-            String name = TransportVehicleTypeEnum.getVallue().get(i).getTipe();
-            TransportVehicleTypeEnum type = TransportVehicleTypeEnum.getVallue().get(i);
-            TransportVehicle[] vehicle = new TransportVehicle[maikingSizesParkingsDyfferentTyps(parkingSpacesForBikes,
-                    parkingSpacesForPassangersCars, parkingSpacesForTrucks).get(i)];
-            parkingSpaces.put(type, vehicle);
-            System.out.println(vehicle);
-        }
-       // System.out.println(parkingSpaces);
-    }
-	public HashMap<TransportVehicleTypeEnum, TransportVehicle[]> fulling(int parkingSpacesForBikes,
-			int parkingSpacesForPassangersCars, int parkingSpacesForTrucks) {
-		HashMap parkingSpaces = new HashMap<TransportVehicleTypeEnum, TransportVehicle[]>();
-		for (int i = 0; i <= TransportVehicleTypeEnum.getVallue().size() - 1; i++) {
-			String name = TransportVehicleTypeEnum.getVallue().get(i).getTipe();
-			TransportVehicleTypeEnum type = TransportVehicleTypeEnum.getVallue().get(i);
-			TransportVehicle[] vehicle = new TransportVehicle[maikingSizesParkingsDyfferentTyps(parkingSpacesForBikes,
-					parkingSpacesForPassangersCars, parkingSpacesForTrucks).get(i)];
-			parkingSpaces.put(type, vehicle);
+	public Map<TransportVehicleTypeEnum, TransportVehicle[]> fullingForList(List<ParkingTypeInfo> parkingValues) {
+		Map parkingSpaces = new HashMap<TransportVehicleTypeEnum, TransportVehicle[]>();
+		for (ParkingTypeInfo typeInfo : parkingValues) {
+			parkingSpaces.put(typeInfo.getType(), new TransportVehicle[typeInfo.getQuantityPlaces()]);
 		}
 		return parkingSpaces;
 	}
+	
+	
+	private Map<TransportVehicleTypeEnum, TransportVehicle[]> fullingForMap(
+			Map<TransportVehicleTypeEnum, ParkingTypeInfo> parkingValues) {
+		Map parkingSpaces = new HashMap<TransportVehicleTypeEnum, TransportVehicle[]>();
+		for (Map.Entry<TransportVehicleTypeEnum, ParkingTypeInfo> buffer : parkingValues.entrySet()) {
+			parkingSpaces.put(buffer.getKey(), new TransportVehicle[buffer.getValue().getQuantityPlaces()]);
+		}
+		return parkingSpaces;
+	}
+
 
 	public Ticket park(TransportVehicle car) {
 		Ticket ticret = new Ticket(car.getIbn(), giveParkingSpeaseNunber(car), getTipeParking(car));
 		return ticret;
 	}
 
+	
 	public int giveParkingSpeaseNunber(TransportVehicle car) {
-
 		TransportVehicle[] parking = parkingSpaces.get(TransportVehicleTypeEnum.getValid(car.getType()));
 		int num = findFreePlaceNum(parking);
-		parking[num - 1] = car;
+		parking[toIndex(num) ] = car;
 		return num;
 	}
+	
 
 	public String getTipeParking(TransportVehicle car) {
 		return car.getType();
 	}
+	
 
 	private int findFreePlaceNum(TransportVehicle[] parkingSpaces) {
 		int num = 0;
@@ -110,76 +81,34 @@ public class Parking {
 
 	public TransportVehicle pickUp(Ticket ticket) {
 		TransportVehicle[] parking = parkingSpaces.get(TransportVehicleTypeEnum.getValid(ticket.getTypParking()));
-		// TransportVehicle vehicle = ticket.getNumberSpeace().getTipeTransportVehicle(
-		// ticket);
-		TransportVehicle vehicle = parking[(ticket.getNumberSpeace()) - 1];
+		TransportVehicle vehicle = parking[ toIndex(ticket.getNumberSpeace())];
 		parking[toIndex(ticket.getNumberSpeace())] = null;
-
 		return vehicle;
 	}
-
-	public int getRent() {
+	
+	
+	public Map<TransportVehicleTypeEnum, Integer> getRentForList(List<ParkingTypeInfo> parkingValues) {
+		Map rateOfHour = new HashMap<TransportVehicleTypeEnum, TransportVehicle[]>();
+		for (ParkingTypeInfo typeInfo : parkingValues) {
+			rateOfHour.put(typeInfo.getType(), typeInfo.getRentFfPlace());
+		}
 		return rateOfHour;
 	}
-	/*
-	 * public static List <TransportVehicleTypeEnum> getKey() {
-	 * List<TransportVehicleTypeEnum> keys = new
-	 * ArrayList<TransportVehicleTypeEnum>(); for ( TransportVehicleTypeEnum key1:
-	 * parkingSpaces.keySet() ) { keys = (List<TransportVehicleTypeEnum>)
-	 * parkingSpaces.keySet(); } return keys; }
-	 * 
-	 * 
-	 * static int getNumberSpeace(TransportVehicle car) { return distribute(car); }
-	 * 
-	 * public static int distribute(TransportVehicle car) { int num = 0; String tipe
-	 * = car.getType(); // TransportVehicleTypeÑefficients.getCefficient(tipe); ( if
-	 * (TransportVehicleTypeÑefficients.getCefficient(tipe) == (float)
-	 * INDEX_BIKE_PARKING) {
-	 * 
-	 * num = findFreePlaceNum(parkingSpacesForBikes); parkingSpacesForBikes[num - 1]
-	 * = car;
-	 * 
-	 * }
-	 * 
-	 * if (TransportVehicleTypeÑefficients.getCefficient(tipe) ==
-	 * INDEX_PASSANGERS_PARKING) { num =
-	 * findFreePlaceNum(parkingSpacesForPassangersCars);
-	 * parkingSpacesForPassangersCars[num - 1] = car;
-	 * 
-	 * } if (TransportVehicleTypeÑefficients.getCefficient(tipe) ==
-	 * (float)INDEX_TRUCK_PARKING) { num = findFreePlaceNum(parkingSpacesForTrucks);
-	 * parkingSpacesForTrucks[num - 1] = car;
-	 * 
-	 * } return num; }
-	 * 
-	 * 
-	 * 
-	 * 
-	 * public static TransportVehicle pickUp(Ticket ticket) { int y = 0;
-	 * //TransportVehicle vehicle =
-	 * ticket.getNumberSpeace().getTipeTransportVehicle( ticket); TransportVehicle
-	 * vehicle = getTipeTransportVehicle(ticket)[toIndex(ticket.getNumberSpeace())];
-	 * // string type = ticket. return vehicle;
-	 * 
-	 * }
-	 * 
-	 * public static TransportVehicle[] getTipeTransportVehicle(Ticket ticet) {
-	 * String type = ticet.getTypParking(); if ((boolean) (type == "bickeParking"))
-	 * { return parkingSpacesForBikes; }
-	 * 
-	 * if ((boolean) (type == "passangerParking")) { return
-	 * parkingSpacesForPassangersCars; }
-	 * 
-	 * if ((boolean) (type == "truckParking")) { return parkingSpacesForTrucks; }
-	 * return null;
-	 * 
-	 * } public int getRent() { return rateOfHour; }
-	 * 
-	 * public static float getIndexTruckParking() { return INDEX_TRUCK_PARKING; }
-	 * 
-	 * public static float getIndexPassangersParking() { return
-	 * INDEX_PASSANGERS_PARKING; }
-	 * 
-	 * public static float getIndexBikeParking() { return INDEX_BIKE_PARKING; }
-	 */
+	
+	
+	private Map<TransportVehicleTypeEnum, Integer> getRentForMap(
+			Map<TransportVehicleTypeEnum, ParkingTypeInfo> parkingValues) {
+		Map rateOfHour = new HashMap<TransportVehicleTypeEnum, Integer>();
+		for (Map.Entry<TransportVehicleTypeEnum, ParkingTypeInfo> buffer : parkingValues.entrySet()) {
+			rateOfHour.put(buffer.getKey(),buffer.getValue().getRentFfPlace());
+		}
+		return rateOfHour;
+	}
+	
+
+	public int getRent(Ticket ticket) {
+	int rent = rateOfHour.get(TransportVehicleTypeEnum.getValid(ticket.getTypParking()));
+		return rent;
+	}
+	
 }

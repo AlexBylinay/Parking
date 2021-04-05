@@ -18,6 +18,7 @@ public class TransportVehicle {
 		return ibn;
 	}
 	 public void toPrintInfo() {
+		 
 			System.out.printf(" \n %s \n %s %d  \n %s %s  ", "оо|$|$|info|$|$|оо", "ibn Car", getIbn(),"typ TransportVehicle", getType());
 		}
 }

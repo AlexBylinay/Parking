@@ -1,48 +1,32 @@
 package by.bylinay.trening.parking;
 
 public class ParkingTypeInfo {
-	
-	String typeTransportVehicle;
+
+	TransportVehicleTypeEnum type;
 	int quantityPlaces;
 	int rentFfPlace;
-	
 
-	public ParkingTypeInfo(String typeTransportVehicle, int quantityPlaces, int rentFfPlace) {
-		this.typeTransportVehicle = typeTransportVehicle;
+	public ParkingTypeInfo(TransportVehicleTypeEnum type, int quantityPlaces, int rentFfPlace) {
+		this.type = type;
 		this.quantityPlaces = quantityPlaces;
-		this.rentFfPlace = quantityPlaces;
+		this.rentFfPlace = rentFfPlace;
 	}
 
-	public String getTypeTransportVehicle() {
-		return typeTransportVehicle;
+	public ParkingTypeInfo(int quantityPlaces, int rentFfPlace) {
+		this.quantityPlaces = quantityPlaces;
+		this.rentFfPlace = rentFfPlace;
 	}
 
-	public void setTypeTransportVehicle(String typeTransportVehicle) {
-		this.typeTransportVehicle = typeTransportVehicle;
+	public TransportVehicleTypeEnum getType() {
+		return type;
 	}
 
 	public int getQuantityPlaces() {
 		return quantityPlaces;
 	}
 
-	public void setQuantityPlaces(int quantityPlaces) {
-		this.quantityPlaces = quantityPlaces;
-	}
-
 	public int getRentFfPlace() {
 		return rentFfPlace;
 	}
 
-	public void setRentFfPlace(int rentFfPlace) {
-		
-		this.rentFfPlace = rentFfPlace;
-	}
-	public int getQuantityPlacesforType(String typeTransportVehicle) {
-		int y =0;
-		
-		if (typeTransportVehicle == getTypeTransportVehicle()){
-		y =	getQuantityPlaces() ; 
-	}
-		return y;
-}
 }
