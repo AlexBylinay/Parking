@@ -2,14 +2,12 @@ package by.bylinay.trening.parking;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Ticket {
-	public  int ibnCar;
-	public  int numberParkingSpace;
-	public  String typParking;
-	public  String timeOn;
+	public int ibnCar;
+	public int numberParkingSpace;
+	public String typParking;
+	public String timeOn;
 	private long startTime;
 
 	public Ticket(int ibnCar, int numberParkingSpace, String typParking) {
@@ -21,33 +19,33 @@ public class Ticket {
 
 	}
 
-	public  int getIbnCar() {
+	public int getIbnCar() {
 		return ibnCar;
 	}
 
-	public  int setIbnCar(int num) {
+	public int setIbnCar(int num) {
 		ibnCar = num;
 		return ibnCar;
 	}
 
-	public  int getNumberSpeace() {
+	public int getNumberSpeace() {
 		return numberParkingSpace;
 	}
 
-	public  String getTypParking() {
+	public String getTypParking() {
 		return typParking;
 	}
 
-	public  String getTimeOn() {
+	public String getTimeOn() {
 		return timeOn;
 	}
 
-	public  long getStartTime() {
+	public long getStartTime() {
 		return startTime;
 	}
 
-	 public void toPrintTicket() {
-		System.out.printf(" \n %s \n %s %d \n %s %d \n %s %s \n %s %s ", "оо|$|$|TICKET|$|$|оо", "ibn Car", getIbnCar(), "number spase",
-				getNumberSpeace(), "typ Parking", getTypParking(), "time", getTimeOn());
+	public void toPrintTicket() {
+		System.out.printf(" \n %s \n %s %d \n %s %d \n %s %s \n %s %s ", "оо|$|$|TICKET|$|$|оо", "ibn Car", getIbnCar(),
+				"number spase", getNumberSpeace(), "typ Parking", getTypParking(), "time", getTimeOn());
 	}
 }

@@ -30,7 +30,6 @@ public enum TransportVehicleTypeEnum {
 		return null;
 	}
 
-
 	public static List<TransportVehicleTypeEnum> getVallue() {
 		List<TransportVehicleTypeEnum> values = new ArrayList<TransportVehicleTypeEnum>();
 		for (TransportVehicleTypeEnum val : values()) {
@@ -53,6 +52,5 @@ public enum TransportVehicleTypeEnum {
 	public static int getSize() {
 		return getVallue().size();
 	}
-
 
 }

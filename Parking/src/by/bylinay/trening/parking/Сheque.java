@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Ñheque {
-	private final long MILLISEKONDS_IN_HOUR = 1;
+	private final long MILLISEKONDS_IN_HOUR = 2;
 	public int numberTiket;
 	public  String typeCar;
 	public  int ibnCar;
@@ -17,20 +17,20 @@ public class Ñheque {
 
 	
 
-	public Ñheque(Parking parking,Ticket ticket) {
+	public Ñheque(Ticket ticket, int rateOfHour) {
 		// this.ibnCar = ticket.getIbnCar();
 
 		this.timeOn = ticket.getTimeOn();
 		this.timeOff = new SimpleDateFormat("yyyy/MM/dd_HH:mm:ss").format(Calendar.getInstance().getTime());
 		this.quantity = timeCount(ticket);
-		this.rateOfHour = parking.getRent(ticket);
+		this.rateOfHour = rateOfHour;;
 		//this.rate = calculationRote(ticket, parking);
 		this.numberTiket = ticket.getNumberSpeace();
         this.ibnCar = (ticket).getIbnCar ();
 	}
 
 	public  int timeCount(Ticket ticket) {
-		return (int) (System.currentTimeMillis() - (ticket.getStartTime()) / MILLISEKONDS_IN_HOUR);
+		return (int) ((System.currentTimeMillis() - (ticket.getStartTime())) / MILLISEKONDS_IN_HOUR);
 	}
 
 	public  int getNumberTiket() {
