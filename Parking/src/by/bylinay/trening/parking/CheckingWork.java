@@ -1,27 +1,28 @@
 package by.bylinay.trening.parking;
 
+import java.text.ParseException;
 import java.util.HashMap;
 
 import java.util.Map;
 
 public class CheckingWork {
 
-	public static void main(String[] arg) {
+	public static void main(String[] arg) throws ParseException {
 
 		Map<TransportVehicleTypeEnum, ParkingTypeInfo> typeParcking = new HashMap<TransportVehicleTypeEnum, ParkingTypeInfo>();
 		typeParcking.put(TransportVehicleTypeEnum.PASSANGERS, new ParkingTypeInfo(15, 2));
 		typeParcking.put(TransportVehicleTypeEnum.TRUCK, new ParkingTypeInfo(18, 3));
 		typeParcking.put(TransportVehicleTypeEnum.BIKE, new ParkingTypeInfo(12, 1));
 
-		TransportVehicle ural = new TransportVehicle("bike", 3536);
-		TransportVehicle r1 = new TransportVehicle("bike", 7986);
-		TransportVehicle japanis = new TransportVehicle("passanger's", 3456);
-		TransportVehicle chizer = new TransportVehicle("passanger's", 9874);
-		TransportVehicle iS = new TransportVehicle("passanger's", 6556);
-		TransportVehicle skania = new TransportVehicle("truck", 3469);
-		TransportVehicle kitaec = new TransportVehicle("truck", 9000);
-		TransportVehicle volvlo = new TransportVehicle("truck", 5643);
-		TransportVehicle yamaha = new TransportVehicle("bike", 3776);
+		TransportVehicle ural = new TransportVehicle(TransportVehicleTypeEnum.BIKE, 3536);
+		TransportVehicle r1 = new TransportVehicle(TransportVehicleTypeEnum.BIKE, 7986);
+		TransportVehicle japanis = new TransportVehicle(TransportVehicleTypeEnum.PASSANGERS, 3456);
+		TransportVehicle chizer = new TransportVehicle(TransportVehicleTypeEnum.PASSANGERS, 9874);
+		TransportVehicle iS = new TransportVehicle(TransportVehicleTypeEnum.PASSANGERS, 6556);
+		TransportVehicle skania = new TransportVehicle(TransportVehicleTypeEnum.TRUCK, 3469);
+		TransportVehicle kitaec = new TransportVehicle(TransportVehicleTypeEnum.TRUCK, 9000);
+		TransportVehicle volvlo = new TransportVehicle(TransportVehicleTypeEnum.TRUCK, 5643);
+		TransportVehicle yamaha = new TransportVehicle(TransportVehicleTypeEnum.BIKE, 3776);
 
 		Parking Òolorado = new Parking(typeParcking);
 
@@ -44,19 +45,22 @@ public class CheckingWork {
 		ÒoloradoJ.toPrintTicket();
 		ÒoloradoK.toPrintTicket();
 
-		TransportVehicle car1 = Òolorado.pickUpCar(ÒoloradoE);
+		TransportVehicle car1 = Òolorado.pickUpCar(ÒoloradoD);
 		car1.toPrintInfo();
 		TransportVehicle bike1 = Òolorado.pickUpCar(ÒoloradoB);
 		bike1.toPrintInfo();
 		TransportVehicle track1 = Òolorado.pickUpCar(ÒoloradoH);
 		track1.toPrintInfo();
 
-		—heque chek1 = Òolorado.pickUp—heque(ÒoloradoE);
-		chek1.toPrintChecue();
+		//—heque chek1 = Òolorado.pickUp—heque(ÒoloradoE);
+		//chek1.toPrintChecue();
 		—heque chek2 = Òolorado.pickUp—heque(ÒoloradoB);
 		chek2.toPrintChecue();
 		—heque chek3 = Òolorado.pickUp—heque(ÒoloradoH);
 		chek3.toPrintChecue();
+		TransportVehicle marck = new TransportVehicle(TransportVehicleTypeEnum.PASSANGERS, 1143);
+		Ticket aÒoloradoN = (Òolorado.park(marck));
+		aÒoloradoN.toPrintTicket();
 	}
 
 }

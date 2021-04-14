@@ -1,5 +1,6 @@
 package by.bylinay.trening.parking;
 
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,20 +23,20 @@ public class Parking {
 		return parkingSpaces;
 	}
 
-	public Ticket park(TransportVehicle car) {
-		Ticket ticret = new Ticket(car.getIbn(), giveParkingSpeaseNunber(car), getTipeParking(car));
+	public Ticket park(TransportVehicle car) throws ParseException {
+		Ticket ticret = new Ticket(car, giveParkingSpeaseNunber(car));
 		return ticret;
 	}
 
 	public int giveParkingSpeaseNunber(TransportVehicle car) {
-		TransportVehicle[] parking = parkingSpaces.get(TransportVehicleTypeEnum.getValid(car.getType()));
+		TransportVehicle[] parking = parkingSpaces.get(TransportVehicleTypeEnum.getValid(car.getTypeToString()));
 		int num = findFreePlaceNum(parking);
 		parking[toIndex(num)] = car;
 		return num;
 	}
 
 	public String getTipeParking(TransportVehicle car) {
-		return car.getType();
+		return car.getTypeToString ();
 	}
 
 	private int findFreePlaceNum(TransportVehicle[] parkingSpaces) {
@@ -57,7 +58,7 @@ public class Parking {
 		return num - 1;
 	}
 
-	public Getting pickUp(Ticket ticket) {
+	public Getting pickUp(Ticket ticket) throws ParseException {
 		TransportVehicle[] parking = parkingSpaces.get(TransportVehicleTypeEnum.getValid(ticket.getTypParking()));
 		TransportVehicle vehicle = parking[toIndex(ticket.getNumberSpeace())];
 		—heque cheque = new —heque(ticket, (getRent(ticket)));
@@ -66,12 +67,12 @@ public class Parking {
 		return getting;
 	}
 
-	public TransportVehicle pickUpCar(Ticket ticket) {
+	public TransportVehicle pickUpCar(Ticket ticket) throws ParseException {
 		TransportVehicle vehicle = pickUp(ticket).getTransportVehicle();
 		return vehicle;
 	}
 
-	public —heque pickUp—heque(Ticket ticket) {
+	public —heque pickUp—heque(Ticket ticket) throws ParseException {
 		—heque cheque = pickUp(ticket).getCheque();
 		return cheque;
 	}

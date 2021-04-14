@@ -15,6 +15,8 @@ public class TimeUtil {
     }
     public static synchronized Date parse (String formattedDate) throws ParseException{
         return FORMAT.parse(formattedDate);
+        
     }
  
+    
 }

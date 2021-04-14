@@ -1,21 +1,22 @@
 package by.bylinay.trening.parking;
 
-import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import java.util.Calendar;
 
 public class Ticket {
 	public int ibnCar;
 	public int numberParkingSpace;
-	public String typParking;
-	public String timeOn;
+	private String typParking;
+	private String timeOn;
 	private long startTime;
 
-	public Ticket(int ibnCar, int numberParkingSpace, String typParking) {
-		this.ibnCar = ibnCar;
+	public Ticket(TransportVehicle car, int numberParkingSpace) throws ParseException {
+		this.ibnCar = car.getIbn();
 		this.numberParkingSpace = numberParkingSpace;
-		this.typParking = typParking;
-		this.timeOn = new SimpleDateFormat("yyyy/MM/dd_HH:mm:ss").format(Calendar.getInstance().getTime());
-		this.startTime = System.currentTimeMillis();
+		this.typParking = car.getTypeToString();
+		this.timeOn =TimeUtil.format(Calendar.getInstance().getTime());
+		this.startTime = TimeUtil.parse(timeOn).getTime();
+		//this.startTime = System.currentTimeMillis();
 
 	}
 
@@ -45,7 +46,7 @@ public class Ticket {
 	}
 
 	public void toPrintTicket() {
-		System.out.printf(" \n %s \n %s %d \n %s %d \n %s %s \n %s %s ", "оо|$|$|TICKET|$|$|оо", "ibn Car", getIbnCar(),
-				"number spase", getNumberSpeace(), "typ Parking", getTypParking(), "time", getTimeOn());
+		System.out.printf(" \n %s \n %s %d \n %s %d \n %s %s \n %s %s  \n  %d ", "||||||TICKET||||||", "ibn Car", getIbnCar(),
+				"number spase", getNumberSpeace(), "typ Parking", getTypParking(), "time", getTimeOn(), getStartTime());
 	}
 }

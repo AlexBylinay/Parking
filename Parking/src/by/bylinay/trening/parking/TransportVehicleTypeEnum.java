@@ -9,12 +9,12 @@ public enum TransportVehicleTypeEnum {
 
 	public String tipe;
 
-	public String getTipe() {
-		return tipe;
-	}
-
 	TransportVehicleTypeEnum(String tipe) {
 		this.tipe = tipe;
+	}
+
+	public String getTipe() {
+		return tipe;
 	}
 
 	public static boolean isValid(String tipe) {
@@ -46,9 +46,21 @@ public enum TransportVehicleTypeEnum {
 			type.add(val.getTipe());
 		}
 		return type;
-
+		
 	}
-
+	
+	
+	public static String getTypString(TransportVehicleTypeEnum tiper) {
+   String type = null;
+		 for (TransportVehicleTypeEnum val : values()) {
+			if (val.tipe==tiper.getTipe()) {
+				type= 	val.getTipe();
+		}
+		 }
+		return type;
+	}  
+	
+	
 	public static int getSize() {
 		return getVallue().size();
 	}

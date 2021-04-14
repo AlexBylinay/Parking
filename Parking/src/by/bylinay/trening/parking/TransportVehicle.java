@@ -2,16 +2,20 @@ package by.bylinay.trening.parking;
 
 public class TransportVehicle {
 
-	private String type;
+	private TransportVehicleTypeEnum type;
 	private int ibn;
 
-	public TransportVehicle(String type, int ibn) {
+	public TransportVehicle(TransportVehicleTypeEnum type, int ibn) {
 		this.type = type;
 		this.ibn = ibn;
 	}
 
-	public String getType() {
-		return type;
+	public TransportVehicleTypeEnum getType() {
+		return  type;
+	}
+
+	public String getTypeToString () {
+		return type.getTipe() ;
 	}
 
 	public int getIbn() {
@@ -20,7 +24,7 @@ public class TransportVehicle {
 
 	public void toPrintInfo() {
 
-		System.out.printf(" \n %s \n %s %d  \n %s %s  ", "оо|$|$|Info About Car|$|$|оо", "ibn Car", getIbn(),
+		System.out.printf(" \n %s \n %s %d  \n %s %s  ", "/////Info About Car//////", "ibn Car", getIbn(),
 				"typ TransportVehicle", getType());
 	}
 }
