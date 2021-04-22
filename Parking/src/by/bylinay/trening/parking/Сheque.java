@@ -1,37 +1,56 @@
 package by.bylinay.trening.parking;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class Ñheque {
 	private final long MILLISEKONDS_IN_HOUR = 3600000;
 	public int numberTiket;
 	public String typeCar;
 	public int ibnCar;
-	public String timeOn;
-	public String timeOff;
-	public long quantity;
+	private String timeOn;
+	private String timeOff;
+	private int quantity;
 	public int rateOfHour;
-	public int rate;
-	public long finishTime;
-	public long startTime;
+	public int price;
+	private long finishTime;
+	private long startTime;
 	public String timeOffForCheck;
 
 	public Ñheque(Ticket ticket, int rateOfHour) throws ParseException {
 
-		timeOffForCheck = "2021/04/15_22:40:11";
 		this.timeOn = ticket.getTimeOn();
-		this.timeOff = TimeUtil.format(Calendar.getInstance().getTime());
+		this.timeOff = TimeUtil.getTimeMoment().getTimeFormat();
 		this.rateOfHour = rateOfHour;
 		this.numberTiket = ticket.getNumberSpeace();
 		this.ibnCar = ticket.getIbnCar();
-		this.finishTime = TimeUtil.parse(timeOffForCheck).getTime();
+		this.finishTime = TimeUtil.getTimeMoment().getMilliseconds();
 		this.startTime = ticket.getStartTime();
+		this.quantity = timeCount();
+		this.price = countRate();
+
 	}
 
-	public long timeCount() {
-		return (finishTime - startTime) / MILLISEKONDS_IN_HOUR;
+	Ñheque(Ticket ticket, int rateOfHour, int year, int mounth, int day, int hour, int minutes, int seconds,
+			int milisek) throws ParseException {
+		TimeUtil time = new TimeUtil();
+		this.timeOn = ticket.getTimeOn();
+		this.timeOff = time.getTimeCastem(year, mounth, day, hour, minutes, seconds, milisek).getTimeFormat();
+		this.rateOfHour = rateOfHour;
+		this.numberTiket = ticket.getNumberSpeace();
+		this.ibnCar = ticket.getIbnCar();
+		this.finishTime = time.getTimeCastem(year, mounth, day, hour, minutes, seconds, milisek).getMilliseconds();
+		this.startTime = ticket.getStartTime();
+		this.quantity = timeCount();
+		this.price = countRate();
+
+	}
+
+	public int timeCount() {
+		double difference = (double) (finishTime - startTime);
+		double milisekonds = (double) MILLISEKONDS_IN_HOUR;
+
+		return (int) Math.ceil(difference / milisekonds);
+
 	}
 
 	public int getNumberTiket() {
@@ -59,10 +78,10 @@ public class Ñheque {
 	}
 
 	public int getRate() {
-		return rate;
+		return price;
 	}
 
-	public long countRate() {
+	public int countRate() {
 		return timeCount() * rateOfHour;
 
 	}

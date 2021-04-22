@@ -14,6 +14,9 @@ public class Parking {
 		this.rateOfHour = getRent(parkingValues);
 	}
 
+	
+	
+	
 	private Map<TransportVehicleTypeEnum, TransportVehicle[]> fulling(
 			Map<TransportVehicleTypeEnum, ParkingTypeInfo> parkingValues) {
 		parkingSpaces = new HashMap<TransportVehicleTypeEnum, TransportVehicle[]>();
@@ -66,6 +69,16 @@ public class Parking {
 		Getting getting = new Getting(vehicle, cheque);
 		return getting;
 	}
+	
+	public Getting pickUpForCheck(Ticket ticket, int year, int mounth, int day, int hour, int minutes, int seconds, int milisek ) throws ParseException {
+		TransportVehicle[] parking = parkingSpaces.get(TransportVehicleTypeEnum.getValid(ticket.getTypParking()));
+		TransportVehicle vehicle = parking[toIndex(ticket.getNumberSpeace())];
+		—heque cheque = new —heque(ticket, (getRent(ticket)), year,  mounth, day,  hour,minutes,  seconds, milisek);
+		parking[toIndex(ticket.getNumberSpeace())] = null;
+		Getting getting = new Getting(vehicle, cheque);
+		return getting;
+	}
+
 
 	public TransportVehicle pickUpCar(Ticket ticket) throws ParseException {
 		TransportVehicle vehicle = pickUp(ticket).getTransportVehicle();
@@ -74,6 +87,12 @@ public class Parking {
 
 	public —heque pickUp—heque(Ticket ticket) throws ParseException {
 		—heque cheque = pickUp(ticket).getCheque();
+		return cheque;
+	}
+	
+	
+	public —heque pickUp—hequeForChec(Ticket ticket, int year, int mounth, int day, int hour, int minutes, int seconds, int milisek) throws ParseException {
+		—heque cheque = pickUpForCheck(ticket,  year,  mounth, day,  hour,minutes,  seconds, milisek).getCheque();
 		return cheque;
 	}
 
