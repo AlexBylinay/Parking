@@ -26,7 +26,7 @@ public class CheckingWork {
 
 		Parking ñolorado = new Parking(typeParcking);
 
-		Ticket añoloradoA = (ñolorado.park(ural));
+		Ticket ñoloradoA = (ñolorado.park(ural));
 		Ticket ñoloradoB = ñolorado.park(r1);
 		Ticket ñoloradoC = ñolorado.park(japanis);
 		Ticket ñoloradoD = ñolorado.park(iS);
@@ -36,7 +36,7 @@ public class CheckingWork {
 		Ticket ñoloradoJ = ñolorado.park(skania);
 		Ticket ñoloradoK = ñolorado.park(kitaec);
 
-		añoloradoA.toPrintTicket();
+		ñoloradoA.toPrintTicket();
 		ñoloradoB.toPrintTicket();
 		ñoloradoC.toPrintTicket();
 		ñoloradoD.toPrintTicket();
@@ -61,6 +61,11 @@ public class CheckingWork {
 		TransportVehicle marck = new TransportVehicle(TransportVehicleTypeEnum.PASSANGERS, 1143);
 		Ticket añoloradoN = (ñolorado.park(marck));
 		añoloradoN.toPrintTicket();
+		Ñheque chek5 = ñolorado.pickUpÑhequeForChec(ñoloradoB, TimeUtil.convertionInTime("2021.04.25|19:09:54"));
+		chek5.toPrintChecue();
+		Ñheque chek6 = ñolorado.pickUpÑhequeForChec(ñoloradoH,TimeUtil.convertionInTime ( "2021.04.25|19:59:54"));
+		chek6.toPrintChecue();
+		 System.out.println (ñoloradoA.getStartTime());
 	}
 
 }

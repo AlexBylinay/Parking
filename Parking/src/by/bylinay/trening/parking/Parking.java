@@ -1,6 +1,7 @@
 package by.bylinay.trening.parking;
 
 import java.text.ParseException;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -70,10 +71,10 @@ public class Parking {
 		return getting;
 	}
 	
-	public Getting pickUpForCheck(Ticket ticket, int year, int mounth, int day, int hour, int minutes, int seconds, int milisek ) throws ParseException {
+	public Getting pickUpForCheck(Ticket ticket, LocalDateTime time) throws ParseException {
 		TransportVehicle[] parking = parkingSpaces.get(TransportVehicleTypeEnum.getValid(ticket.getTypParking()));
 		TransportVehicle vehicle = parking[toIndex(ticket.getNumberSpeace())];
-		—heque cheque = new —heque(ticket, (getRent(ticket)), year,  mounth, day,  hour,minutes,  seconds, milisek);
+		—heque cheque = new —heque(ticket, time, (getRent(ticket)));
 		parking[toIndex(ticket.getNumberSpeace())] = null;
 		Getting getting = new Getting(vehicle, cheque);
 		return getting;
@@ -91,8 +92,8 @@ public class Parking {
 	}
 	
 	
-	public —heque pickUp—hequeForChec(Ticket ticket, int year, int mounth, int day, int hour, int minutes, int seconds, int milisek) throws ParseException {
-		—heque cheque = pickUpForCheck(ticket,  year,  mounth, day,  hour,minutes,  seconds, milisek).getCheque();
+	public —heque pickUp—hequeForChec(Ticket ticket, LocalDateTime time ) throws ParseException {
+		—heque cheque = pickUpForCheck(ticket, time).getCheque();
 		return cheque;
 	}
 

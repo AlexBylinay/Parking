@@ -1,21 +1,21 @@
 package by.bylinay.trening.parking;
 
 import java.text.ParseException;
+import java.time.LocalDateTime;
 
 public class Ticket {
 	public int ibnCar;
 	public int numberParkingSpace;
 	private String typParking;
 	private String timeOn;
-	private long startTime;
+	private LocalDateTime startTime;
 
 	public Ticket(TransportVehicle car, int numberParkingSpace) throws ParseException {
 		this.ibnCar = car.getIbn();
 		this.numberParkingSpace = numberParkingSpace;
 		this.typParking = car.getTypeToString();
-		this.timeOn = TimeUtil.getTimeMoment().getTimeFormat();
-		this.startTime = TimeUtil.getTimeMoment().getMilliseconds();
-		// this.startTime = System.currentTimeMillis();
+		this.startTime = LocalDateTime.now();
+		this.timeOn = TimeUtil.convertionTimeMoment(startTime);
 
 	}
 
@@ -40,13 +40,12 @@ public class Ticket {
 		return timeOn;
 	}
 
-	public long getStartTime() {
+	public LocalDateTime getStartTime() {
 		return startTime;
 	}
 
 	public void toPrintTicket() {
-		System.out.printf(" \n %s \n %s %d \n %s %d \n %s %s \n %s %s  \n  %d ", "||||||TICKET||||||", "ibn Car",
-				getIbnCar(), "number spase", getNumberSpeace(), "typ Parking", getTypParking(), "time", getTimeOn(),
-				getStartTime());
+		System.out.printf(" \n %s \n %s %d \n %s %d \n %s %s \n %s %s   ", "||||||TICKET||||||", "ibn Car",
+				getIbnCar(), "number spase", getNumberSpeace(), "typ Parking", getTypParking(), "time", getTimeOn());
 	}
 }

@@ -8,14 +8,15 @@ public class TransportVehicle {
 	public TransportVehicle(TransportVehicleTypeEnum type, int ibn) {
 		this.type = type;
 		this.ibn = ibn;
+
 	}
 
 	public TransportVehicleTypeEnum getType() {
-		return  type;
+		return type;
 	}
 
-	public String getTypeToString () {
-		return type.getTipe() ;
+	public String getTypeToString() {
+		return type.getTipe();
 	}
 
 	public int getIbn() {
