@@ -15,7 +15,7 @@ public class Ñheque {
 	public int price;
 	
 
-	public Ñheque(Ticket ticket, int quantity, int price, int rateOfHour, LocalDateTime moment) throws ParseException {
+	public Ñheque(Ticket ticket, int quantity,  int rateOfHour, int price, LocalDateTime moment) throws ParseException {
 
 		this.rateOfHour = rateOfHour;
 		this.timeOn = ticket.getTimeOn();

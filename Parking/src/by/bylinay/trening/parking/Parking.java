@@ -53,8 +53,13 @@ public class Parking {
 	  public Getting pickUp(Ticket ticket) throws ParseException {
 	        TransportVehicle[] parking = parkingSpaces.get(TransportVehicleTypeEnum.getValid(ticket.getTypParking()));
 	        TransportVehicle vehicle = parking[toIndex(ticket.getNumberSpeace())];
-	        —heque cheque = new —heque(ticket, timeCount(ticket), getPice(ticket), getRent(ticket), getmoment());
 	        parking[toIndex(ticket.getNumberSpeace())] = null;
+	        LocalDateTime TimeThisMoment =  LocalDateTime.now();
+	        int rent = rateOfHour.get(TransportVehicleTypeEnum.getValid(ticket.getTypParking()));
+	        double difference = (double) Duration.between(ticket.getStartTime(), TimeThisMoment).toSeconds();
+			double milisekonds = (double) TimeUtil.SEKONDS_IN_HOUR;
+			 int timeCount = (int) Math.ceil(difference / milisekonds);
+	        —heque cheque = new —heque(ticket, timeCount, rent, timeCount*rent, TimeThisMoment);
 	        Getting getting = new Getting(vehicle, cheque);
 	        return getting;
 	    }
@@ -72,10 +77,7 @@ public class Parking {
 	  }
 	  
 	  
-	/*public —heque get—heque(Ticket ticket) throws ParseException {
-		return new —heque(ticket, timeCount(ticket), getPice(ticket), getRent(ticket), getmoment());
-	}
-*/
+	
 	private Map<TransportVehicleTypeEnum, Integer> getRent(
 			Map<TransportVehicleTypeEnum, ParkingTypeInfo> parkingValues) {
 		rateOfHour = new HashMap<TransportVehicleTypeEnum, Integer>();
@@ -85,11 +87,16 @@ public class Parking {
 		return rateOfHour;
 	}
 
-	private int getRent(Ticket ticket) {
-		int rent = rateOfHour.get(TransportVehicleTypeEnum.getValid(ticket.getTypParking()));
-		return rent;
-	}
+	
+	
 
+	/*public —heque get—heque(Ticket ticket) throws ParseException {
+	return new —heque(ticket, timeCount(ticket), getPice(ticket), getRent(ticket), getmoment());
+}
+
+private int getRent(Ticket ticket) {
+		return  rateOfHour.get(TransportVehicleTypeEnum.getValid(ticket.getTypParking()));
+		}
 	LocalDateTime getmoment() {
 		return LocalDateTime.now();
 	}
@@ -104,7 +111,7 @@ public class Parking {
 		return timeCount(ticket) * getRent(ticket);
 
 	}
-
+*/
 	private int toNum(int index) {
 		return index + 1;
 	}
