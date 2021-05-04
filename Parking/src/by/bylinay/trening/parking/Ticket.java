@@ -16,9 +16,16 @@ public class Ticket {
 		this.typParking = car.getTypeToString();
 		this.startTime = LocalDateTime.now();
 		this.timeOn = TimeUtil.convertionTimeMoment(startTime);
-
 	}
-
+	
+	 Ticket(TransportVehicle car, int numberParkingSpace, String time) throws ParseException {
+		this.ibnCar = car.getIbn();
+		this.numberParkingSpace = numberParkingSpace;
+		this.typParking = car.getTypeToString();
+		this.startTime = TimeUtil.convertionInTime(time);
+		this.timeOn = time;
+	}
+	
 	public int getIbnCar() {
 		return ibnCar;
 	}
@@ -44,7 +51,7 @@ public class Ticket {
 		return startTime;
 	}
 
-	public void toPrintTicket() {
+    void toPrintTicket() {
 		System.out.printf(" \n %s \n %s %d \n %s %d \n %s %s \n %s %s   ", "||||||TICKET||||||", "ibn Car",
 				getIbnCar(), "number spase", getNumberSpeace(), "typ Parking", getTypParking(), "time", getTimeOn());
 	}

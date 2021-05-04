@@ -26,7 +26,7 @@ public class CheckingWork {
 
 		Parking Òolorado = new Parking(typeParcking);
 
-		Ticket ÒoloradoA = (Òolorado.park(ural));
+		Ticket ÒoloradoA = Òolorado.park(ural);
 		Ticket ÒoloradoB = Òolorado.park(r1);
 		Ticket ÒoloradoC = Òolorado.park(japanis);
 		Ticket ÒoloradoD = Òolorado.park(iS);
@@ -35,7 +35,9 @@ public class CheckingWork {
 		Ticket ÒoloradoI = Òolorado.park(yamaha);
 		Ticket ÒoloradoJ = Òolorado.park(skania);
 		Ticket ÒoloradoK = Òolorado.park(kitaec);
-
+		Ticket ÒoloradoAaChek = new Ticket(r1, 12 , "2021.05.04|13:05:36");
+		Ticket ÒoloradoBbChek = new Ticket(chizer, 15, "2021.05.04|12:05:36");
+		Ticket ÒoloradoCcChek = new Ticket(iS, 14,"2021.05.03|00:05:36");
 		ÒoloradoA.toPrintTicket();
 		ÒoloradoB.toPrintTicket();
 		ÒoloradoC.toPrintTicket();
@@ -45,27 +47,31 @@ public class CheckingWork {
 		ÒoloradoJ.toPrintTicket();
 		ÒoloradoK.toPrintTicket();
 
-		TransportVehicle car1 = Òolorado.pickUpCar(ÒoloradoD);
+		TransportVehicle car1 = Òolorado.getCar(ÒoloradoD);
 		car1.toPrintInfo();
-		TransportVehicle bike1 = Òolorado.pickUpCar(ÒoloradoB);
+		TransportVehicle bike1 = Òolorado.getCar(ÒoloradoB);
 		bike1.toPrintInfo();
-		TransportVehicle track1 = Òolorado.pickUpCar(ÒoloradoH);
+		TransportVehicle track1 = Òolorado.getCar(ÒoloradoH);
 		track1.toPrintInfo();
 
-		//—heque chek1 = Òolorado.pickUp—heque(ÒoloradoE);
-		//chek1.toPrintChecue();
-		—heque chek2 = Òolorado.pickUp—heque(ÒoloradoB);
+		—heque chek1 = Òolorado.get—heque(ÒoloradoJ);
+		chek1.toPrintChecue();
+		—heque chek2 = Òolorado.get—heque(ÒoloradoB);
 		chek2.toPrintChecue();
-		—heque chek3 = Òolorado.pickUp—heque(ÒoloradoH);
+		—heque chek3 = Òolorado.get—heque(ÒoloradoH);
 		chek3.toPrintChecue();
+		—heque chek6 = Òolorado.get—heque(ÒoloradoAaChek);
+		chek6.toPrintChecue();
+		—heque chek7 = Òolorado.get—heque(ÒoloradoBbChek);
+		chek7.toPrintChecue();
+		—heque chek5 = Òolorado.get—heque(ÒoloradoCcChek);
+		chek5.toPrintChecue();
+		
 		TransportVehicle marck = new TransportVehicle(TransportVehicleTypeEnum.PASSANGERS, 1143);
 		Ticket aÒoloradoN = (Òolorado.park(marck));
 		aÒoloradoN.toPrintTicket();
-		—heque chek5 = Òolorado.pickUp—hequeForChec(ÒoloradoB, TimeUtil.convertionInTime("2021.04.25|19:09:54"));
-		chek5.toPrintChecue();
-		—heque chek6 = Òolorado.pickUp—hequeForChec(ÒoloradoH,TimeUtil.convertionInTime ( "2021.04.25|19:59:54"));
-		chek6.toPrintChecue();
-		 System.out.println (ÒoloradoA.getStartTime());
+		
+	
 	}
 
 }

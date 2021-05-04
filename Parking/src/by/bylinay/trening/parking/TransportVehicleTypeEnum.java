@@ -7,14 +7,14 @@ public enum TransportVehicleTypeEnum {
 
 	BIKE("bike"), PASSANGERS("passanger's"), TRUCK("truck");
 
-	public String tipe;
+	public String type;
 
-	TransportVehicleTypeEnum(String tipe) {
-		this.tipe = tipe;
+	TransportVehicleTypeEnum(String type) {
+		this.type = type;
 	}
 
 	public String getTipe() {
-		return tipe;
+		return type;
 	}
 
 	public static boolean isValid(String tipe) {
@@ -23,7 +23,7 @@ public enum TransportVehicleTypeEnum {
 
 	public static TransportVehicleTypeEnum getValid(String tipe) {
 		for (TransportVehicleTypeEnum val : values()) {
-			if (tipe == val.tipe) {
+			if (tipe == val.type) {
 				return val;
 			}
 		}
@@ -53,7 +53,7 @@ public enum TransportVehicleTypeEnum {
 	public static String getTypString(TransportVehicleTypeEnum tiper) {
    String type = null;
 		 for (TransportVehicleTypeEnum val : values()) {
-			if (val.tipe==tiper.getTipe()) {
+			if (val.type==tiper.getTipe()) {
 				type= 	val.getTipe();
 		}
 		 }
