@@ -5,8 +5,7 @@ import java.time.LocalDateTime;
 
 
 public class Ñheque {
-	public int numberTiket;
-	public String typeCar;
+	
 	public int ibnCar;
 	private String timeOn;
 	private String timeOff;
@@ -16,7 +15,7 @@ public class Ñheque {
 	
 
 	public Ñheque(Ticket ticket, int quantity,  int rateOfHour, int price, LocalDateTime moment) throws ParseException {
-
+		this.ibnCar = ticket.getIbnCar();
 		this.rateOfHour = rateOfHour;
 		this.timeOn = ticket.getTimeOn();
 		this.timeOff = TimeUtil.convertionTimeMoment(moment);
