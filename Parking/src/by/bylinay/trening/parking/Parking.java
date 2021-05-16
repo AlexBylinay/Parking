@@ -88,30 +88,6 @@ public class Parking {
 	}
 
 	
-	
-
-	/*public —heque get—heque(Ticket ticket) throws ParseException {
-	return new —heque(ticket, timeCount(ticket), getPice(ticket), getRent(ticket), getmoment());
-}
-
-private int getRent(Ticket ticket) {
-		return  rateOfHour.get(TransportVehicleTypeEnum.getValid(ticket.getTypParking()));
-		}
-	LocalDateTime getmoment() {
-		return LocalDateTime.now();
-	}
-
-	private int timeCount(Ticket ticket) throws ParseException {
-		double difference = (double) Duration.between(ticket.getStartTime(), getmoment()).toSeconds();
-		double milisekonds = (double) TimeUtil.SEKONDS_IN_HOUR;
-		return (int) Math.ceil(difference / milisekonds);
-	}
-
-	private int getPice(Ticket ticket) throws ParseException {
-		return timeCount(ticket) * getRent(ticket);
-
-	}
-*/
 	private int toNum(int index) {
 		return index + 1;
 	}

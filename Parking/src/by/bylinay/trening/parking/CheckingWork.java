@@ -35,9 +35,9 @@ public class CheckingWork {
 		Ticket ñoloradoI = ñolorado.park(yamaha);
 		Ticket ñoloradoJ = ñolorado.park(skania);
 		Ticket ñoloradoK = ñolorado.park(kitaec);
-		Ticket ñoloradoAaChek = new Ticket(r1, 12 , "2021.05.08|13:05:36");
-		Ticket ñoloradoBbChek = new Ticket(chizer, 15, "2021.05.08|12:05:36");
-		Ticket ñoloradoCcChek = new Ticket(iS, 14,"2021.05.08|00:05:36");
+		Ticket ñoloradoAaChek = new Ticket(r1, 12 , "2021.05.16|11:05:36");
+		Ticket ñoloradoBbChek = new Ticket(chizer, 15, "2021.05.16|10:05:36");
+		Ticket ñoloradoCcChek = new Ticket(iS, 14,"2021.05.16|00:05:36");
 		ñoloradoA.toPrintTicket();
 		ñoloradoB.toPrintTicket();
 		ñoloradoC.toPrintTicket();
