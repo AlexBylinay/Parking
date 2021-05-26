@@ -3,6 +3,14 @@ package by.bylinay.trening.parking;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 
+/**
+ * this class describes the receipt that will be issued after the ticket is
+ * provided the receipt will show everything: the rate, the start and end time
+ * of the parking lot, the time at the parking lot, the cost
+ * 
+ * @author AlexBylinay
+ *
+ */
 
 public class Ñheque {
 	
@@ -54,6 +62,11 @@ public class Ñheque {
 		return price;
 	}
 
+
+	/**
+	 * Method for data output
+	 */
+	
 	public void toPrintChecue() {
 		System.out.printf(" \n %s \n %s %d \n %s %s \n %s %s \n %s %d \n %s %d  %s  ", " \\\\\\\\ÑHEQUE////", "IbnCar",
 				getIbnCar(), "time on", getTimeOn(), "time off", getTimeOff(), "hours", getQuantity(), "many",

@@ -3,6 +3,16 @@ package by.bylinay.trening.parking;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * the enum contains the types of vehicles: motorcycle, passanger's car, truck
+ * the enum has methods for the check
+ * 
+ * @author AlexBylinay
+ *
+ */
+
+
 public enum TransportVehicleTypeEnum {
 
 	BIKE("bike"), PASSANGERS("passanger's"), TRUCK("truck");
