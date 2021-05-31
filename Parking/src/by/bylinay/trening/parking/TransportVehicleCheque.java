@@ -13,10 +13,10 @@ public class TransportVehicleCheque {
 	
 	
 	TransportVehicle transportVehicle;
-	Ñheque cheque;
+	Cheque cheque;
 
 
-	TransportVehicleCheque(TransportVehicle transportVehicle, Ñheque cheque) {
+	TransportVehicleCheque(TransportVehicle transportVehicle, Cheque cheque) {
 		this.transportVehicle = transportVehicle;
 		this.cheque = cheque;
 	}
@@ -33,7 +33,7 @@ public class TransportVehicleCheque {
 	 * 
 	 * @return object Cheque
 	 */
-	public Ñheque getCheque() {
+	public Cheque getCheque() {
 		return cheque;
 	}
 }

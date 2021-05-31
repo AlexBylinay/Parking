@@ -44,58 +44,58 @@ public class CheckingWork {
 		 * creating a parking
 		 */
 
-		Parking Òolorado = new Parking(typeParcking);
+		Parking kolorado = new Parking(typeParcking);
 
-		Ticket ÒoloradoA = Òolorado.park(ural);
-		Ticket ÒoloradoB = Òolorado.park(r1);
-		Ticket ÒoloradoC = Òolorado.park(japanis);
-		Ticket ÒoloradoD = Òolorado.park(iS);
-		Ticket ÒoloradoE = Òolorado.park(chizer);
-		Ticket ÒoloradoH = Òolorado.park(volvlo);
-		Ticket ÒoloradoI = Òolorado.park(yamaha);
-		Ticket ÒoloradoJ = Òolorado.park(skania);
-		Ticket ÒoloradoK = Òolorado.park(kitaec);
+		Ticket koloradoA = kolorado.park(ural);
+		Ticket koloradoB = kolorado.park(r1);
+		Ticket koloradoC = kolorado.park(japanis);
+		Ticket koloradoD = kolorado.park(iS);
+		Ticket koloradoE = kolorado.park(chizer);
+		Ticket koloradoH = kolorado.park(volvlo);
+		Ticket koloradoI = kolorado.park(yamaha);
+		Ticket koloradoJ = kolorado.park(skania);
+		Ticket koloradoK = kolorado.park(kitaec);
 		
 		/**
 		 * Creating objects of the Ticket, with a String time value, for check
 		 */
 		
 		
-		Ticket ÒoloradoAaChek = new Ticket(r1, 12 , "2021.05.16|11:05:36");
-		Ticket ÒoloradoBbChek = new Ticket(chizer, 15, "2021.05.16|10:05:36");
-		Ticket ÒoloradoCcChek = new Ticket(iS, 14,"2021.05.16|00:05:36");
-		ÒoloradoA.toPrintTicket();
-		ÒoloradoB.toPrintTicket();
-		ÒoloradoC.toPrintTicket();
-		ÒoloradoD.toPrintTicket();
-		ÒoloradoE.toPrintTicket();
-		ÒoloradoI.toPrintTicket();
-		ÒoloradoJ.toPrintTicket();
-		ÒoloradoK.toPrintTicket();
+		Ticket koloradoAaChek = new Ticket(r1, 12 , "2021.05.16|11:05:36");
+		Ticket koloradoBbChek = new Ticket(chizer, 15, "2021.05.16|10:05:36");
+		Ticket koloradoCcChek = new Ticket(iS, 14,"2021.05.16|00:05:36");
+		koloradoA.toPrintTicket();
+		koloradoB.toPrintTicket();
+		koloradoC.toPrintTicket();
+		koloradoD.toPrintTicket();
+		koloradoE.toPrintTicket();
+		koloradoI.toPrintTicket();
+		koloradoJ.toPrintTicket();
+		koloradoK.toPrintTicket();
 
-		TransportVehicle car1 = Òolorado.getCar(ÒoloradoD);
+		TransportVehicle car1 = kolorado.getCar(koloradoD);
 		car1.toPrintInfo();
-		TransportVehicle bike1 = Òolorado.getCar(ÒoloradoB);
+		TransportVehicle bike1 = kolorado.getCar(koloradoB);
 		bike1.toPrintInfo();
-		TransportVehicle track1 = Òolorado.getCar(ÒoloradoH);
+		TransportVehicle track1 = kolorado.getCar(koloradoH);
 		track1.toPrintInfo();
 
-		—heque chek1 = Òolorado.get—heque(ÒoloradoJ);
+		Cheque chek1 = kolorado.getCheque(koloradoJ);
 		chek1.toPrintChecue();
-		—heque chek2 = Òolorado.get—heque(ÒoloradoB);
+		Cheque chek2 = kolorado.getCheque(koloradoB);
 		chek2.toPrintChecue();
-		—heque chek3 = Òolorado.get—heque(ÒoloradoH);
+		Cheque chek3 = kolorado.getCheque(koloradoH);
 		chek3.toPrintChecue();
-		—heque chek6 = Òolorado.get—heque(ÒoloradoAaChek);
+		Cheque chek6 = kolorado.getCheque(koloradoAaChek);
 		chek6.toPrintChecue();
-		—heque chek7 = Òolorado.get—heque(ÒoloradoBbChek);
+		Cheque chek7 = kolorado.getCheque(koloradoBbChek);
 		chek7.toPrintChecue();
-		—heque chek5 = Òolorado.get—heque(ÒoloradoCcChek);
+		Cheque chek5 = kolorado.getCheque(koloradoCcChek);
 		chek5.toPrintChecue();
 		
 		TransportVehicle marck = new TransportVehicle(TransportVehicleTypeEnum.PASSANGERS, 1143);
-		Ticket aÒoloradoN = (Òolorado.park(marck));
-		aÒoloradoN.toPrintTicket();
+		Ticket aKoloradoN = (kolorado.park(marck));
+		aKoloradoN.toPrintTicket();
 		
 	
 	}

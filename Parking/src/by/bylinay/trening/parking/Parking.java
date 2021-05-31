@@ -85,9 +85,9 @@ public class Parking {
 	        double difference = (double) Duration.between(ticket.getStartTime(), TimeThisMoment).toSeconds();
 			double milisekonds = (double) TimeUtil.SEKONDS_IN_HOUR;
 			 int timeCount = (int) Math.ceil(difference / milisekonds);
-	        —heque cheque = new —heque(ticket, timeCount, rent, timeCount*rent, TimeThisMoment);
-	        TransportVehicleCheque getting = new TransportVehicleCheque(vehicle, cheque);
-	        return getting;
+	        Cheque cheque = new Cheque(ticket, timeCount, rent, timeCount*rent, TimeThisMoment);
+	        TransportVehicleCheque vehicleCheque = new TransportVehicleCheque(vehicle, cheque);
+	        return vehicleCheque;
 	    }
 	  
 	  
@@ -97,8 +97,8 @@ public class Parking {
 		}
 	 
 	
-	  public —heque get—heque(Ticket ticket) throws ParseException {
-			—heque cheque = pickUp(ticket).getCheque();
+	  public Cheque getCheque(Ticket ticket) throws ParseException {
+			Cheque cheque = pickUp(ticket).getCheque();
 			return cheque;
 	  }
 	  

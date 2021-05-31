@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  *
  */
 
-public class Ñheque {
+public class Cheque {
 	
 	public int ibnCar;
 	private String timeOn;
@@ -22,7 +22,7 @@ public class Ñheque {
 	public int price;
 	
 
-	public Ñheque(Ticket ticket, int quantity,  int rateOfHour, int price, LocalDateTime moment) throws ParseException {
+	public Cheque(Ticket ticket, int quantity,  int rateOfHour, int price, LocalDateTime moment) throws ParseException {
 		this.ibnCar = ticket.getIbnCar();
 		this.rateOfHour = rateOfHour;
 		this.timeOn = ticket.getTimeOn();
@@ -68,7 +68,7 @@ public class Ñheque {
 	 */
 	
 	public void toPrintChecue() {
-		System.out.printf(" \n %s \n %s %d \n %s %s \n %s %s \n %s %d \n %s %d  %s  ", " \\\\\\\\ÑHEQUE////", "IbnCar",
+		System.out.printf(" \n %s \n %s %d \n %s %s \n %s %s \n %s %d \n %s %d  %s  ", " \\\\\\\\ï¿½HEQUE////", "IbnCar",
 				getIbnCar(), "time on", getTimeOn(), "time off", getTimeOff(), "hours", getQuantity(), "many",
 				getPrice(), getTimeOff());
 
