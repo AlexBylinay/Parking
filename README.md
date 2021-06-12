@@ -1,6 +1,5 @@
 # Parking
-trening OOP
-This project is for learning the basics of OOP and studying collections 
+This project is for learning the basics of OOP and studying collections. 
 The essence of the project: to create a parking model that has different platforms for different vehicles.
 with a different number of seats. Each platform has its own rent.
 I made it so, that depending on the vehicle, the program finds a place, get a ticket with information: site number, id vehicle.
